@@ -46,7 +46,7 @@ export default function(model, conflictPrefix) {
 	Object.keys(model.attributes).forEach(attr => {
 		proxyModelAttribute(proxy, model, attr, conflictPrefix);
 	});
-	if (!proxy.id) {
+	if (!proxy.id && model.id) {
 		// sometimes ID is a field in the model (in which case it'll be proxied already)
 		Object.defineProperty(proxy, "id", {
 			get: function() {
